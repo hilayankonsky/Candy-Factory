@@ -1,0 +1,18 @@
+# קבצי אובייקט (תוצרי ביניים של קימפול)
+*.o
+*.obj
+
+# קבצי הרצה סופיים (Executables)
+*.exe
+*.out
+CandyFactory  # החלף בשם קובץ ההרצה שלך
+
+# ספריות וקומפיילר
+.vscode/
+.idea/
+*.swp
+*.patch
+
+# קבצי מערכת
+.DS_Store
+Thumbs.db
