@@ -1,6 +1,3 @@
-// Hila Yankonsky ID:212783716
-// Eyal Abrahem   ID:205843386
-
 #include "SugarSupplier.hpp"
 #include <cstring>
 using namespace std;
