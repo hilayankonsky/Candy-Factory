@@ -1,39 +1,39 @@
 #include "SugarSupplier.hpp"
-#include <cstring>
-using namespace std;
-SugarSupplier::SugarSupplier(const char* supplierName)
-{
-    if (supplierName)
-    {
-        sugarName = new char [strlen(supplierName)+1];
-        strcpy(sugarName,supplierName);
-    }
-    else
-    {
-        sugarName = nullptr;
-    }   
+
+SugarSupplier::SugarSupplier(const char* supplierName) : sugarName(nullptr) {
+    setSugarName(supplierName);
 }
-SugarSupplier::~SugarSupplier()
-{
-    if (sugarName)
-    {
-        delete [] sugarName;
-    }
+
+SugarSupplier::SugarSupplier(const SugarSupplier& other) : sugarName(nullptr) {
+    setSugarName(other.sugarName);
 }
-const char* SugarSupplier::getSugarName()const
-{
+
+SugarSupplier& SugarSupplier::operator=(const SugarSupplier& other) {
+    if (this != &other) {
+        setSugarName(other.sugarName);
+    }
+    return *this;
+}
+
+SugarSupplier::~SugarSupplier() {
+    delete[] sugarName;
+    sugarName = nullptr;
+}
+
+const char* SugarSupplier::getSugarName() const {
     return sugarName;
 }
-void SugarSupplier::setSugarName(const char* newName)
-{
-    if (sugarName)
-    {
-        delete [] sugarName;
-    }
-    sugarName = new char [strlen(newName)+1];
-    strcpy(sugarName,newName);
+
+void SugarSupplier::setSugarName(const char* newName) {
+    delete[] sugarName;
+    sugarName = nullptr;
+
+    if (!newName) return;
+
+    sugarName = new char[std::strlen(newName) + 1];
+    std::strcpy(sugarName, newName);
 }
-void SugarSupplier::supplySugar()
-{
-    cout << sugarName <<" is now supplying sugar! 🍬" << endl ;
+
+void SugarSupplier::supplySugar() {
+    std::cout << "[" << (sugarName ? sugarName : "UnknownSugar") << "] is now supplying sugar!" << std::endl;
 }

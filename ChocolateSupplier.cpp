@@ -1,39 +1,40 @@
-#include"ChocolateSupplier.hpp"
-#include <cstring>
-using namespace std;
-ChocolateSupplier::ChocolateSupplier(const char* supplierName)
-{
-    if (supplierName)
-    {
-        chocolateName =  new char [strlen(supplierName)+1];
-        strcpy(chocolateName, supplierName);
-    }
-    else
-    {
-        chocolateName = nullptr;
-    }
+#include "ChocolateSupplier.hpp"
+
+ChocolateSupplier::ChocolateSupplier(const char* supplierName) : chocolateName(nullptr) {
+    setChocolateName(supplierName);
 }
-ChocolateSupplier::~ChocolateSupplier()
-{
-    if (chocolateName)
-    {
-        delete [] chocolateName;
-    }
+
+ChocolateSupplier::ChocolateSupplier(const ChocolateSupplier& other) : chocolateName(nullptr) {
+    setChocolateName(other.chocolateName);
 }
-const char* ChocolateSupplier::getChocolateName() const
-{
+
+ChocolateSupplier& ChocolateSupplier::operator=(const ChocolateSupplier& other) {
+    if (this != &other) {
+        setChocolateName(other.chocolateName);
+    }
+    return *this;
+}
+
+ChocolateSupplier::~ChocolateSupplier() {
+    delete[] chocolateName;
+    chocolateName = nullptr;
+}
+
+const char* ChocolateSupplier::getChocolateName() const {
     return chocolateName;
 }
-void ChocolateSupplier::setChocolateName(const char* newName)
-{
-    if (chocolateName)
-    {
-        delete [] chocolateName;
-    }
-    chocolateName = new char [strlen(newName)+1];
-    strcpy(chocolateName, newName);
+
+void ChocolateSupplier::setChocolateName(const char* newName) {
+    delete[] chocolateName;
+    chocolateName = nullptr;
+
+    if (!newName) return;
+
+    chocolateName = new char[std::strlen(newName) + 1];
+    std::strcpy(chocolateName, newName);
 }
-void ChocolateSupplier::supplyChocolate()
-{
-    cout << chocolateName << " is now supplying chocolate! 🍫" << endl ;
+
+void ChocolateSupplier::supplyChocolate() {
+    std::cout << "[" << (chocolateName ? chocolateName : "UnknownChoco")
+              << "] is now supplying chocolate!" << std::endl;
 }

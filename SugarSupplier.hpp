@@ -1,13 +1,18 @@
 #pragma once
 #include <iostream>
-class SugarSupplier
-{
-private:
-    char *sugarName;
+#include <cstring>
+
+class SugarSupplier {
+protected:
+    char* sugarName;
+
 public:
     SugarSupplier(const char* supplierName);
-    ~SugarSupplier();
-    const char* getSugarName()const;
+    SugarSupplier(const SugarSupplier& other);
+    SugarSupplier& operator=(const SugarSupplier& other);
+    virtual ~SugarSupplier();
+
+    const char* getSugarName() const;
     void setSugarName(const char* newName);
     void supplySugar();
 };
